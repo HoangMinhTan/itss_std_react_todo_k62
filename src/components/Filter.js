@@ -12,9 +12,10 @@ function Filter( {value, onChange}  ) {
   
   return (
     <div className="panel-tabs">
-      <a href="#"
-      onclick={handleClick.bind(null, 'ALL')}
-      className={value === 'ALL'? 'is-active' : ''}
+      <a
+        href="#"
+        onClick={handleClick.bind(null, 'ALL')}
+        className={value === 'ALL' ?  'is-active' : ''}
       >
         全て
       </a>
