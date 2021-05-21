@@ -14,18 +14,20 @@ import Filter from './Filter';
 
 /* カスタムフック */
 import useStorage from '../hooks/storage';
-
+import useFbStorage from '../hooks/fbStorage';
 /* ライブラリ */
 import {getKey} from "../lib/util";
 
 function Todo() {
-  const [items, putItems, clearItems] = useStorage();
+  // const [items, putItems, clearItems] = useStorage();
   //     /* テストコード 開始 */
   //   { key: getKey(), text: '日本語の宿題', done: false },
   //   { key: getKey(), text: 'reactを勉強する', done: false },
   //   { key: getKey(), text: '明日の準備をする', done: false },
   //   /* テストコード 終了 */
   // ]);
+  
+  const [items, addItem, updateItem, clearItems] = useFbStorage();
   
   const [filter, setFilter] = React.useState('ALL');
   
@@ -39,17 +41,19 @@ function Todo() {
   const handleFilterChange = value => setFilter(value);
   
   const handleCheck = checked => {
-    const newItems = items.map(item => {
-      if (item.key === checked.key) {
-        item.done = !item.done;
-      }
-      return item;
-    });
-    putItems(newItems);
+    // const newItems = items.map(item => {
+    //   if (item.key === checked.key) {
+    //     item.done = !item.done;
+    //   }
+    //   return item;
+    // });
+    // putItems(newItems);
+    updateItem(checked);
   };
   
   const handleInput = text => {
-    putItems([...items, {key: getKey(), text, done: false}]);
+    //putItems([...items, {key: getKey(), text, done: false}]);
+    addItem({text, done: false})
   };
   
   
